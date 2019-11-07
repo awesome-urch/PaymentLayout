@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".page.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/card_template"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/card_img"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/app_name" />
+
+        <ImageView
+            android:id="@+id/card_type"
+            app:layout_constraintBottom_toBottomOf="@id/card_template"
+            app:layout_constraintRight_toRightOf="@id/card_template"
+            android:scaleType="centerCrop"
+            android:src="@drawable/visa_logo"
+            android:adjustViewBounds="true"
+            android:layout_margin="20dp"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/card_holder"
+            app:layout_constraintBottom_toBottomOf="@id/card_template"
+            app:layout_constraintLeft_toLeftOf="@id/card_template"
+            app:layout_constraintRight_toLeftOf="@id/card_type"
+            android:layout_margin="20dp"
+            android:text="@string/card_holder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@android:color/white"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

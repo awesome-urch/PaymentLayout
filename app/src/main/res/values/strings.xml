@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PaymentLayout</string>
+    <string name="card_holder">Card Holder</string>
+</resources>
