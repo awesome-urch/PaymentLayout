@@ -8,50 +8,266 @@
     tools:context=".page.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content">
+        android:layout_margin="@dimen/four_unit">
 
-
-        <ImageView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/transitions_container"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/card_img"
+            android:layout_width="0dp"
+            android:layout_height="200dp">
+
+            <!--<ImageView
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/card_template"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/card_img"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name" />-->
+
+            <!--<ImageView
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/card_template"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/card_img"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name" />-->
+
+            <ImageView
+                android:id="@+id/chip"
+                android:layout_marginTop="@dimen/seven_unit"
+                app:layout_constraintBottom_toTopOf="@id/card_number"
+                app:layout_constraintLeft_toLeftOf="@id/card_number"
+                android:scaleType="centerCrop"
+                android:src="@drawable/chip"
+                android:adjustViewBounds="true"
+                android:layout_marginBottom="@dimen/one_unit"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/card_number"
+                app:layout_constraintBottom_toTopOf="@id/validity_section"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginStart="@dimen/five_unit"
+                android:layout_marginLeft="@dimen/five_unit"
+                android:layout_marginEnd="@dimen/five_unit"
+                android:layout_marginRight="@dimen/five_unit"
+                android:layout_marginBottom="@dimen/three_unit"
+                android:textAllCaps="true"
+                android:textSize="28sp"
+                android:text="@string/default_card_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@android:color/white"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/validity_section"
+                app:layout_constraintBottom_toTopOf="@id/card_type"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginBottom="@dimen/four_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/expiry_section"
+                    android:id="@+id/valid"
+                    android:text="@string/valid_thru"
+                    android:layout_marginEnd="@dimen/four_unit"
+                    android:layout_marginRight="16dp"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:id="@+id/expiry_section"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/card_date"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:textColor="@android:color/white"
+                        android:text="@string/mm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:textColor="@android:color/white"
+                        android:text="/"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:textColor="@android:color/white"
+                        android:text="@string/YY"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/card_type"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/visa_logo"
+                android:adjustViewBounds="true"
+                android:layout_margin="20dp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/card_holder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/card_type"
+                android:layout_margin="@dimen/five_unit"
+                android:textAllCaps="true"
+                android:text="@string/card_holder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/card_ccv"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toBottomOf="@id/card_section"
+        android:id="@+id/form_section"
+        android:background="@drawable/container_drop_shadow"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="@dimen/six_unit"
+        android:paddingBottom="@dimen/six_unit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/card_template"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/card_img"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/app_name" />
+            android:paddingLeft="@dimen/four_unit"
+            android:paddingRight="@dimen/four_unit"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/card_type"
-            app:layout_constraintBottom_toBottomOf="@id/card_template"
-            app:layout_constraintRight_toRightOf="@id/card_template"
-            android:scaleType="centerCrop"
-            android:src="@drawable/visa_logo"
-            android:adjustViewBounds="true"
-            android:layout_margin="20dp"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"/>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/card_number">
 
-        <TextView
-            android:id="@+id/card_holder"
-            app:layout_constraintBottom_toBottomOf="@id/card_template"
-            app:layout_constraintLeft_toLeftOf="@id/card_template"
-            app:layout_constraintRight_toLeftOf="@id/card_type"
-            android:layout_margin="20dp"
-            android:text="@string/card_holder"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:lines="1"
-            android:textColor="@android:color/white"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
 
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="@dimen/two_unit"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/card_holder">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginTop="@dimen/two_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:minWidth="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/date_hint">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/date"
+                        android:focusable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="date"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:minWidth="100dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ccv">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ccv"
+                        android:maxLength="3"
+                        android:inputType="number"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

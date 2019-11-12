@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="one_unit">4dp</dimen>
+    <dimen name="two_unit">8dp</dimen>
+    <dimen name="three_unit">12dp</dimen>
+    <dimen name="four_unit">16dp</dimen>
+    <dimen name="five_unit">20dp</dimen>
+    <dimen name="six_unit">24dp</dimen>
+    <dimen name="seven_unit">28dp</dimen>
+    <dimen name="eight_unit">32dp</dimen>
+    <dimen name="card_width">320dp</dimen>
+</resources>

@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">PaymentLayout</string>
-    <string name="card_holder">Card Holder</string>
+    <string name="card_holder">Card Name</string>
+    <string name="card_number">Card Number</string>
+    <string name="valid_thru">Valid Thru</string>
+    <string name="mm">MM</string>
+    <string name="YY">YY</string>
+    <string name="date_hint">MM/YY</string>
+    <string name="ccv">CCV</string>
+    <string name="default_card_no">################</string>
 </resources>
