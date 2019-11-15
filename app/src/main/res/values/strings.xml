@@ -8,7 +8,8 @@
     <string name="date_hint">MM/YY</string>
     <string name="cvv">CVV</string>
     <string name="cvv_hint">000</string>
-    <string name="default_card_no">################</string>
+    <string name="space">" "</string>
+    <string name="default_card_no">#### #### #### ####</string>
     <string name="autgorized_signature">Authorized signature</string>
     <string name="pay">Pay</string>
 </resources>

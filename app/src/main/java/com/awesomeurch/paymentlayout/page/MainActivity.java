@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText nameEdit;
     private EditText numberEdit;
     private EditText cvvEdit;
+    private TextView cardNumView;
     private TextSwitcher nameView,numberView,cvvView,dateView;
     private EditText[] editTexts;
     private TextSwitcher[] textSwitchers;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private static String VERVE = "verve";
     private static String VISA = "visa";
     private String currentType = VISA;
+    private int count = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         cardFront = findViewById(R.id.card_front);
         cardBack = findViewById(R.id.card_back);
 
+        cardNumView = findViewById(R.id.card_value);
         cardTypeView = findViewById(R.id.card_type);
         nameView = findViewById(R.id.card_holder);
         numberView = findViewById(R.id.card_number);
@@ -239,21 +242,17 @@ public class MainActivity extends AppCompatActivity {
     private TextWatcher textWatcher(final EditText editText){
         return new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
 
                 if(editText==numberEdit){
-                    numberView.setText(String.format("%s",s.length() > 0 ? s : getResources().getString(R.string.default_card_no)));
-                    setCardNumber(s.toString());
+                    setCardNumber();
 
+                    TextView tv = (TextView) numberView.getCurrentView();
 
+                    Log.d(TAG,"card val: "+tv.getText().toString());
 
-                    //checkCardType();
+                    numberView.setText(String.format("%s",s.length() > 0 ? s.toString() : getResources().getString(R.string.default_card_no)));
 
                     setCardTypeImg();
-
-                    /*if(s.length() < 5){
-                        checkCardType();
-                    }*/
 
                 }else if(editText==dateEdit){
                     dateView.setText(String.format("%s",s.length() > 0 ? s : getResources().getString(R.string.date_hint)));
@@ -265,15 +264,6 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }else if(editText==nameEdit){
-
-                    /*Transition explode = new Explode();
-                    explode.setDuration(1000);
-
-                    Transition changeText = new ChangeText().setChangeBehavior(ChangeText.CHANGE_BEHAVIOR_OUT_IN);
-                    changeText.setInterpolator(new LinearInterpolator());
-
-                    TransitionManager.beginDelayedTransition(transitionsContainer,
-                            explode);*/
 
                     nameView.setText(String.format("%s",s.length() > 0 ? s : getResources().getString(R.string.card_holder)));
 
@@ -292,16 +282,36 @@ public class MainActivity extends AppCompatActivity {
 
             public void afterTextChanged(Editable s) {
 
+                if(editText==numberEdit){
+                    if (count <= editText.getText().toString().length()
+                            &&(editText.getText().toString().length()==4
+                            ||editText.getText().toString().length()==9
+                            ||editText.getText().toString().length()==14
+                            ||editText.getText().toString().length()==19)){
+                        editText.setText(String.format("%s ",editText.getText().toString()));
+                        int pos = editText.getText().length();
+                        editText.setSelection(pos);
+                    }else if (count >= editText.getText().toString().length()
+                            &&(editText.getText().toString().length()==4
+                            ||editText.getText().toString().length()==9
+                            ||editText.getText().toString().length()==14
+                            ||editText.getText().toString().length()==19)){
+                        editText.setText(editText.getText().toString().substring(0,editText.getText().toString().length()-1));
+                        int pos = editText.getText().length();
+                        editText.setSelection(pos);
+                    }
+                    count = editText.getText().toString().length();
+                }
+
             }
         };
     }
 
-    //method to check card type
+    /**
+     * method to check card type
+     * @return "master", "visa" or "verve"
+     */
     private String checkCardType(){
-        String cardNumber = "4084084084084081";
-        int expiryMonth = 11; //any month in the future
-        int expiryYear = 18; // any year in the future. '2018' would work also!
-        String cvv = "408";  // cvv of the test card
 
         Card card = new Card(getCardNumber(), getExpiryMonth(), getExpiryYear(), getCvv());
         Log.d(TAG,"Type: "+card.getType()+" card no: "+getCardNumber());
@@ -315,7 +325,6 @@ public class MainActivity extends AppCompatActivity {
             String lowerCaseCardType = checkCardType().toLowerCase();
             if(lowerCaseCardType.contains(VISA)){
                 Log.d(TAG,"visa");
-                //cardTypeView.setImageDrawable(getResources().getDrawable(R.drawable.visa_logo));
                 if(!currentType.equals(VISA)){
                     Utils.ImageViewAnimatedChange(getApplicationContext(),cardTypeView,getResources().getDrawable(R.drawable.visa_logo));
                 }
@@ -323,12 +332,6 @@ public class MainActivity extends AppCompatActivity {
             }else if(lowerCaseCardType.contains(MASTER)){
                 Log.d(TAG,"master");
 
-                /*Transition explode = new Explode();
-                explode.setDuration(1000);
-
-
-                TransitionManager.beginDelayedTransition(transitionsContainer,
-                        explode);*/
 
                 if(!currentType.equals(MASTER)){
                     Utils.ImageViewAnimatedChange(getApplicationContext(),cardTypeView,getResources().getDrawable(R.drawable.mastercard_logo));
@@ -358,26 +361,22 @@ public class MainActivity extends AppCompatActivity {
         return calendar;
     }
 
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
-    }
-
     public DatePickerDialog.OnDateSetListener getDate() {
         return date;
-    }
-
-    public void setDate(DatePickerDialog.OnDateSetListener date) {
-        this.date = date;
     }
 
     public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(String cardNumber) {
+    public void setCardNumber() {
+
+        String cardNo = numberEdit.getText().toString().replace(" ", "");
+
+        Log.d(TAG,"CN: "+cardNo);
 
         //make sure the card number maintains minimum of 16 digits length
-        this.cardNumber = String.format("%-16s", cardNumber ).replace(' ', '0');
+        this.cardNumber = String.format("%-16s", cardNo ).replace(' ', '0');
     }
 
     public String getCvv() {
